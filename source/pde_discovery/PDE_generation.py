@@ -1,6 +1,6 @@
 import pysindy as ps
 from pysindy import PDELibrary
-from pysindy.optimizers import STLSQ, SSR, SR3
+from pysindy.optimizers import STLSQ
 from pysindy.differentiation import SpectralDerivative
 import matplotlib.pyplot as plt
 from PIL import Image
@@ -8,11 +8,11 @@ import os
 import numpy as np
 
 #Change this to your own directories, frame imports
-features_dir = r"cross_generations" #Cross et al. simulator, epsilon 0.3 gamma 0.2
+features_dir = r"../../generations/cross_generations"  #Cross et al. simulator, epsilon 0.3 gamma 0.2
 #features_dir = r'brandao_generations' #Brandao et al. simulator, epsilon 0.3 gamma 0.2
 
 #Only available for the brandao generator, timesteps
-transient_time_file = "brandao_generations/transient_times.csv"
+transient_time_file = "../../generations/brandao_generations/transient_times.csv"
 t = np.loadtxt(transient_time_file, delimiter=",")
 dt = np.mean(np.diff(t))
 dt = round(dt, 1)
