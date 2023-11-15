@@ -8,28 +8,33 @@ import os
 import numpy as np
 
 #Change this to your own directories, frame imports
-""" Test-Images """
+""" Features directory of the Test-Images """
 #features_dir = r"../../generations/cross_generations"  #Cross et al. simulator, epsilon 0.3 gamma 0.2
 #features_dir = r'brandao_generations' #Brandao et al. simulator, epsilon 0.3 gamma 0.2
 
-""" Changemaps """
-features_dir = r"../../generations/changemap_generations/cropped_resized/20"
+""" Features directory of the generated changemaps """
+#features_dir = r"../../generations/changemap_generations/cropped_resized/20"
 #features_dir = r"../../generations/changemap_generations/cropped_resized/22"
 #features_dir = r"../../generations/changemap_generations/cropped_resized/24"
-
 #features_dir = r"../../generations/changemap_generations/cropped_cropped/20"
-#eatures_dir = r"../../generations/changemap_generations/cropped_cropped/22"
-#features_dir = r"../../generations/changemap_generations/cropped_cropped/24"
-
+#features_dir = r"../../generations/changemap_generations/cropped_cropped/22"
+features_dir = r"../../generations/changemap_generations/cropped_cropped/24"
 
 
 #Only available for the brandao generator, timesteps
-transient_time_file = "../../generations/brandao_generations/transient_times.csv"
-t = np.loadtxt(transient_time_file, delimiter=",")
-dt = np.mean(np.diff(t))
-dt = round(dt, 1)
 
-res = 448
+#transient_time_file = "../../generations/brandao_generations/transient_times.csv"
+#t = np.loadtxt(transient_time_file, delimiter=",")
+#dt = np.mean(np.diff(t))
+#dt = round(dt, 1)
+
+""" Resolution for Test-Images """
+#res = 448
+
+""" Resolution for Changemaps """
+res = 224
+
+
 frames = []
 
 for filename in os.listdir(features_dir):
@@ -39,21 +44,29 @@ for filename in os.listdir(features_dir):
         #img = img.resize((res, res)).convert('L') # Just keeping this line in case we want to change image sizes
         frames.append(img)
 
+
 #Creating spatial grid
+
 features = np.stack(frames, axis=0)
-features = np.reshape(features, (470, res, res, 1)) # Artificially replicating pixel values as SINDy is a bit dumb
+#features = np.reshape(features, (470, res, res, 1)) # Artificially replicating pixel values as SINDy is a bit dumb
+features = np.reshape(features, (49, res, res, 1)) # Artificially replicating pixel values as SINDy is a bit dumb
 spatial_grid_x, spatial_grid_y = np.meshgrid(np.arange(res), np.arange(res))
 spatial_grid = np.stack((spatial_grid_x, spatial_grid_y), axis=-1)
 print("Spatial grid shape:", np.shape(spatial_grid))
 print("Features shape:", np.shape(features))
 
+
 #Plotting the last frame if you want to see what it looks like
-'''
+
+"""
 plt.imshow(features[0,:,:,0], cmap='gray')
 plt.colorbar(label='Intensity')
-plt.show()'''
+plt.show()
+"""
+
 
 #Define feature library
+
 lib = ps.PDELibrary(
     library_functions=[
         lambda x: x,
