@@ -8,8 +8,20 @@ import os
 import numpy as np
 
 #Change this to your own directories, frame imports
-features_dir = r"../../generations/cross_generations"  #Cross et al. simulator, epsilon 0.3 gamma 0.2
+""" Test-Images """
+#features_dir = r"../../generations/cross_generations"  #Cross et al. simulator, epsilon 0.3 gamma 0.2
 #features_dir = r'brandao_generations' #Brandao et al. simulator, epsilon 0.3 gamma 0.2
+
+""" Changemaps """
+features_dir = r"../../generations/changemap_generations/cropped_resized/20"
+#features_dir = r"../../generations/changemap_generations/cropped_resized/22"
+#features_dir = r"../../generations/changemap_generations/cropped_resized/24"
+
+#features_dir = r"../../generations/changemap_generations/cropped_cropped/20"
+#eatures_dir = r"../../generations/changemap_generations/cropped_cropped/22"
+#features_dir = r"../../generations/changemap_generations/cropped_cropped/24"
+
+
 
 #Only available for the brandao generator, timesteps
 transient_time_file = "../../generations/brandao_generations/transient_times.csv"
