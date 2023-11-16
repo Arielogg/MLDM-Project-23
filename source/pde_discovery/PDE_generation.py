@@ -18,7 +18,11 @@ import numpy as np
 #features_dir = r"../../generations/changemap_generations/cropped_resized/24"
 #features_dir = r"../../generations/changemap_generations/cropped_cropped/20"
 #features_dir = r"../../generations/changemap_generations/cropped_cropped/22"
-features_dir = r"../../generations/changemap_generations/cropped_cropped/24"
+#features_dir = r"../../generations/changemap_generations/cropped_cropped/24"
+
+""" Features directory of the generated registered by deformation (This images are .jpg)"""
+#features_dir = r"../../generations/deformation_generations/registered/24"
+features_dir = r"../../generations/deformation_generations/deformations/24"
 
 
 #Only available for the brandao generator, timesteps
