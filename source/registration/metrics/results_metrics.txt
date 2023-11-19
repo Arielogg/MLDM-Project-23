@@ -1,0 +1,92 @@
+------------ Final Results (Laser 24_30): ------------
+
+--- Raw: ---
+Average MSE in the raw data: ---
+Average SSIM in the raw data: 0.1363
+Average PSNR in the raw data: 11.4477
+
+--- Deformation: ---
+Regularized (L2 with 0.015 lambda):
+Average MSE in the data: 0.02362
+Average SSIM in the data: 0.5443
+Average PSNR in the data: 16.5726
+
+Overfitted:
+
+Average MSE in the data: 0.01557
+Average SSIM in the data: 0.5579
+Average PSNR in the data: 19.0787
+
+--- Change Maps: ---
+Change Maps (Cropped):
+Average SSIM in the data: 0.5188 
+Average PSNR in the data: 19.4638 
+
+Change Maps (Resized):
+Average SSIM in the data: 0.3837 
+Average PSNR in the data: 21.3107 
+
+
+------------ Final Results (Laser 22_30): ------------
+
+--- Raw: ---
+Average MSE in the raw data: ---
+Average SSIM in the raw data: 0.097
+Average PSNR in the raw data: 11.0806
+
+--- Deformation: ---
+Regularized (L2 with 0.015 lambda):
+Average MSE in the data: 0.01844
+Average SSIM in the data: 0.5698
+Average PSNR in the data: 16.6983 
+
+Overfitted:
+
+Average MSE in the data: 0.01494
+Average SSIM in the data: 0.5992
+Average PSNR in the data: 19.6933 
+
+--- Change Maps: ---
+Change Maps (Cropped):
+Average SSIM in the data: 0.5767 
+Average PSNR in the data: 29.2327 
+
+Change Maps (Resized):
+Average SSIM in the data: 0.3859 
+Average PSNR in the data: 25.2768  
+
+------------ Final Results (Laser 20_2): ------------
+
+--- Raw: ---
+Average MSE in the raw data: ---
+Average SSIM in the raw data: 0.2571
+Average PSNR in the raw data: 18.3969 
+
+--- Deformation: ---
+Regularized (L2 with 0.015 lambda):
+Average MSE in the data: 0.0099
+Average SSIM in the raw data: 0.4183
+Average PSNR in the raw data: 18.5546
+
+Overfitted:
+
+Average MSE in the data: 0.0051
+Average SSIM in the data: 0.4224
+Average PSNR in the data: 19.0971 
+
+--- Change Maps: ---
+Change Maps (Cropped):
+Average SSIM in the data: 0.9416 
+Average PSNR in the data: 51.439 
+
+Change Maps (Resized):
+Average SSIM in the data: 0.934 
+Average PSNR in the data: 49.4115 
+
+
+----------------------------------------------------------------------------------------------------------------------------
+
+--- Explanaton: ---
+The higher the PSNR, the better the quality of the compressed, or reconstructed image.
+
+The resultant SSIM index is a decimal value between -1 and 1, where 1 indicates perfect similarity, 0 indicates no similarity, and -1 indicates perfect anti-correlation.
