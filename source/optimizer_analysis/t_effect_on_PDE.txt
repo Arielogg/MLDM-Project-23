@@ -1,0 +1,44 @@
+threshold: 0.01, alpha: 0.01, t: 0.001: 
+ 15_:_ 3.7276e+10
+
+
+threshold: 0.01, alpha: 0.01, t: 0.005: 
+ 15_:_ 3.7239e+10
+
+
+threshold: 0.01, alpha: 0.01, t: 0.01: 
+ 15_:_ 3.7190e+10
+
+
+threshold: 0.01, alpha: 0.01, t: 0.05: 
+ 16_:_ 3.7140e+10
+
+
+threshold: 0.01, alpha: 0.01, t: 0.1: 
+ 16_:_ 3.7156e+10
+
+
+threshold: 0.01, alpha: 0.01, t: 0.2: 
+ 15_:_ 3.7175e+10
+
+
+threshold: 0.01, alpha: 0.01, t: 0.5: 
+ 15_:_ 3.7205e+10
+
+
+threshold: 0.01, alpha: 0.01, t: 0.7: 
+ 15_:_ 3.7264e+10
+
+
+threshold: 0.01, alpha: 0.01, t: 1.0: 
+ 16_:_ 3.7264e+10
+
+
+threshold: 0.01, alpha: 0.01, t: 1.5: 
+ 16_:_ 3.7303e+10
+
+
+threshold: 0.01, alpha: 0.01, t: 2.0: 
+ 15_:_ 3.7236e+10
+
+
