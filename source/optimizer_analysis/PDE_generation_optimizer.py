@@ -244,7 +244,7 @@ for normalize_column in normalize_columns:
     complexity_normalizeCols.append(output_content_pde.count('+'))
     error_normalizeCols.append(output_content_error)
 
-fout = "PDE_dict.txt"
+fout = "Optimizer_effect_on_PDE.txt"
 fo = open(fout, "w")
 for k, v in PDE_dict.items():
     fo.write(str(k) + ': \n ' + str(v) + '\n\n')
