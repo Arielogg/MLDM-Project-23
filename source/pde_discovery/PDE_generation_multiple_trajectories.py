@@ -14,7 +14,10 @@ from scipy.integrate import solve_ivp
 
 """ !!!!!!!!! ATTENTION !!!!!!!!!
 To use multiple_trajectories, you have to replace line 673 in pysindy.py (External Libraries/pysindy/pysindy.py) by the following:
-def differentiate(self, x, t=None, multiple_trajectories=True):
+    def differentiate(self, x, t, multiple_trajectories=True):
+    
+After executing multiple trajectories, change back to the original version:
+    def differentiate(self, x, t=None, multiple_trajectories=False):
 """
 
 # Change this to your own directories, frame imports
@@ -37,8 +40,9 @@ features_dirs = [features_dir_1, features_dir_2, features_dir_3, features_dir_4]
 """ Resolution for Changemaps & Deformation """
 res = 224
 
+""" Trajectory Length for Changemaps & Deformation """
 traj_len = 49
-#traj_len = 50
+# traj_len = 50
 
 
 def get_features(features_dir):
@@ -90,6 +94,6 @@ x_train_multi = [x1, x2, x3, x4]
 dt = np.arange(0, x_train_multi[0].shape[-2] * 0.05, 0.05)
 
 model = ps.SINDy(feature_library=lib, optimizer=opt, feature_names=["u"])
-x_dot = model.differentiate(x=x_train_multi)
+x_dot = model.differentiate(x=x_train_multi, t=None)
 model.fit(x=x_train_multi, x_dot=x_dot, t=dt, multiple_trajectories=True)
 model.print()
