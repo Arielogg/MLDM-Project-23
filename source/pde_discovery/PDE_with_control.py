@@ -13,6 +13,9 @@ trajectory_2 = r"../../generations/cross_generations/e011_g_061"  #Cross et al. 
 trajectory_3 = r"../../generations/cross_generations/e014_g0"  #Cross et al. simulator, epsilon 0.14 gamma 0
 trajectory_4 = r"../../generations/cross_generations/e015_g033"  #Cross et al. simulator, epsilon 0.15 gamma 0.33
 
+""" Features directory of the Raw Images """
+features_dir = r"C:\Users\ariel\PycharmProjects\MLDM_Project\data\multi_trajectories\20_2\cut_1"
+
 res = 224
 
 #List of trajectory directories
@@ -34,21 +37,21 @@ frames = []
             img = img / 255
             frames.append(img)
 features = np.stack(frames, axis=0)
-features = np.reshape(features, (4, len(features)//4, res, res, 1))
+features = np.reshape(features, (len(features)//4, res, res, 4))
 print("Features shape:", np.shape(features))
 '''
 # Working with a single trajectory
-filenames = sorted(os.listdir(trajectory_2))
-for filename in filenames[0:200]:
-    if filename.endswith(".png"):
-        img = Image.open(os.path.join(trajectory_2, filename))
+filenames = sorted(os.listdir(features_dir))
+for filename in filenames:
+    if filename.endswith(".jpg"):
+        img = Image.open(os.path.join(features_dir, filename))
         width, height = img.size
         img = img.resize((res, res)).convert('L') # Just keeping this line in case we want to change image sizes
         img = np.asarray(img)
         img = img / 255
         frames.append(img)
 
-features = np.stack(frames, axis=0)
+features = np.stack(frames[0:23], axis=0)
 features = np.reshape(features, (len(features), res, res, 1))
 print("Features shape:", np.shape(features))
 
@@ -92,27 +95,42 @@ lib = ps.ParameterizedLibrary(
 #Define optimizer, remember alpha is the regularization parameter, threshold is the sparsity parameter.
 print()
 print("Fitting model...")
-opt = ps.STLSQ(threshold=0.01, alpha=0.001, normalize_columns=True, verbose=True)
-model = ps.SINDy(feature_library=lib, optimizer=opt, feature_names=["u", "ε", "γ"]) # Try a bunch of alpha/threshold combinations
+opt = ps.STLSQ(threshold=0.001, alpha=0.01, normalize_columns=False, verbose=True)
+model = ps.SINDy(feature_library=lib, optimizer=opt, feature_names=["u", "F", "t"]) # Try a bunch of alpha/threshold combinations
 
 x = np.asarray(features)
 x_dot = model.differentiate(x=x)  ## check pysindy.pi function differentiate for adjustment of timestep, not automatic.
 #u = [[0.3, 0.2],[0.11, -0.61],[0.14, 0],[0.15,0.33]]
-u = [0.11, -0.61]
+#u = [0.20, 0.02]
 ## Remember to change the axis to axis+1 in the spectral derivative function
 print("Shape of x_dot", np.shape(x_dot))
 
-'''plt.imshow(x_dot[100,:,:,0], cmap='gray')
+'''plt.imshow(x_dot[10,:,:,0], cmap='gray')
 plt.colorbar(label='Intensity')
-plt.show()'''
-
+plt.show()
+'''
 model.fit(x, x_dot=x_dot, u=u, multiple_trajectories=False)  # Check spectral_derivative.py for the adjustment of differentiation axis and timestep, also not automatic
 model.print()
 print()
 
+weights = model.coefficients()
+normalized_weights = weights / np.linalg.norm(weights)
+print(weights)
+print(normalized_weights)
+
+model.coefficients = normalized_weights
+model.print()
+
+## Get simulation and plot
+#sim = model.simulate(x[0,:,:,0], t=dt, u=u)
+#print("Shape of simulation:", np.shape(sim))
+#plt.imshow(sim[0,:,:,0], cmap='gray')
+#plt.colorbar(label='Intensity')
+#plt.show()
+
 #### HYPERPARAMETER SEARCH ####
 
-# List of threshold-alpha combinations
+'''# List of threshold-alpha combinations
 thresholds = [0.000001, 0.0001, 0.001, 0.01, 0.1, 1]
 alphas = [0.0000001, 0.000001, 0.00001, 0.0001, 0.001, 0.01, 0.1, 0.5]
 
@@ -122,7 +140,8 @@ for threshold in thresholds:
         print("Threshold:", threshold)
         print("Alpha:", alpha)
         opt = ps.STLSQ(threshold=threshold, alpha=alpha, normalize_columns=False, verbose=True)
-        model = ps.SINDy(feature_library=lib, optimizer=opt, feature_names=["u", "ε", "γ"])
+        model = ps.SINDy(feature_library=lib, optimizer=opt, feature_names=["u", "F", "t"])
         model.fit(x, x_dot=x_dot, u=u, multiple_trajectories=False)
         model.print()
         print()
+'''
