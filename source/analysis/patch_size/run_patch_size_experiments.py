@@ -63,6 +63,7 @@ def patch_sindy(path, res):
 
     output_content = output_buffer.getvalue()
     output_content = output_content.split("Total error: |y - Xw|^2 + a * |w|_2\n")[-1]
+    output_content = output_content.split("(u)' =")[0]
     sys.stdout = sys.__stdout__
     key = str(res)
     PDE_dict[key] = output_content
@@ -80,8 +81,3 @@ for patch_size in patch_sizes:
     for k, v in PDE_dict.items():
         fo.write(str(k) + ': \n ' + str(v) + '\n\n')
     fo.close()
-
-# Get Errors and Patch sizes
-
-
-# Generate Plot
