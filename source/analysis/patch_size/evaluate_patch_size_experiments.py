@@ -12,7 +12,8 @@ with open('Patch_effect_on_Error.txt') as fp:
         errors.append(error_normalized)
 
 plt.plot(patch_sizes, errors)
-plt.title("Patch size vs. Error")
+plt.title("Patch size vs. Normalized Error")
 plt.xlabel("Patch size")
-plt.ylabel("Error")
+plt.ylabel("Normalized Error")
+plt.grid("minor")
 plt.show()

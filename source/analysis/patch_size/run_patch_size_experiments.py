@@ -16,7 +16,7 @@ def patch_sindy(path, res):
     sys.stdout = output_buffer
 
     features_dir = path
-
+    print("Frames")
     frames = []
     for filename in os.listdir(features_dir):
         print(filename)
@@ -26,6 +26,7 @@ def patch_sindy(path, res):
             print(img.size)
             frames.append(img)
 
+    print("Features")
     features = np.stack(frames, axis=0)
     features = np.reshape(features, (48, res, res, 1))  # Artificially replicating pixel values as SINDy is a bit dumb
     spatial_grid_x, spatial_grid_y = np.meshgrid(np.arange(res), np.arange(res))
@@ -57,7 +58,9 @@ def patch_sindy(path, res):
     x = np.asarray(features)
     dt = np.arange(0, x.shape[-2] * 0.05, 0.05)
     model = ps.SINDy(feature_library=lib, optimizer=opt, feature_names=["u"])
+    print("Differentiate")
     x_dot = model.differentiate(x=x)
+    print("Fit")
     model.fit(x=x, x_dot=x_dot, t=dt)
     model.print()
 
@@ -69,8 +72,8 @@ def patch_sindy(path, res):
     PDE_dict[key] = output_content
     return PDE_dict
 
-patch_sizes = [32, 64, 128, 224, 250, 275, 300, 325, 350, 375, 400, 450, 500, 600, 700, 800, 900, 960]
-
+#patch_sizes = [32, 64, 128, 224, 250, 275, 300, 325, 350, 375, 400, 450, 500, 600, 700, 800, 900, 960, 1920]
+patch_sizes = [1920]
 # Feed Image to SINDy
 for patch_size in patch_sizes:
     path = "../../../data/patches/changemaps/" + str(patch_size) + "/"
