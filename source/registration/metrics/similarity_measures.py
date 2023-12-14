@@ -7,16 +7,19 @@ import glob
 # We set the route for the images
 #features_dir_raw = r"../../../generations/original_cropped_generations/20_2/"
 #features_dir_raw = r"../../../generations/changemap_generations/cropped_cropped/result_24_cut_4_png/"
-features_dir_raw = r"../../../generations/changemap_generations/cropped_resized/result_24_cut_4_png/"
+#features_dir_raw = r"../../../generations/changemap_generations/cropped_resized/result_24_cut_4_png/"
 #features_dir_raw = r"../../../generations/deformation_generations/registered/20/"
 #features_dir_raw = r"../../../generations/deformation_generations_overfitted/registered/24/"
+features_dir_raw = r"../../../generations/optimal_transport_generations/optimal_transport_20_2/"
+
 
 filelist_raw = sorted(glob.glob(f'{features_dir_raw}*.png'))
 if len(filelist_raw) == 0:
     filelist_raw = sorted(glob.glob(f'{features_dir_raw}*.jpg'))
 
+
 # We open the images and define the stack of images
-res = 224
+res = 128
 frames = []
 for filename in filelist_raw:
     img = Image.open(filename).convert('L')
