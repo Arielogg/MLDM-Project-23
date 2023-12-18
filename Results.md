@@ -391,6 +391,7 @@ Iteration ... |y - Xw|^2 ...  a * |w|_2 ...      |w|_0 ... Total error: |y - Xw|
          0 ... 2.2929e+10 ... 1.0769e-03 ...          8 ... 2.2929e+10
 (u)' = 0.151 u + 0.143 uu + 0.030 uuu + 0.067 u_22 + 0.115 u_11 + 0.124 u_1122 + 0.123 u_2222 + 0.124 u_1111
 
+
 ## Optimal Transport without Multi_Trajectory, using barycenters for alignment
 
 20:
