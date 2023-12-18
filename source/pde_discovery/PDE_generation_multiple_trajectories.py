@@ -15,9 +15,13 @@ from scipy.integrate import solve_ivp
 """ !!!!!!!!! ATTENTION !!!!!!!!!
 To use multiple_trajectories, you have to replace line 673 in pysindy.py (External Libraries/pysindy/pysindy.py) by the following:
     def differentiate(self, x, t, multiple_trajectories=True):
+and replace line 187 with:
+        multiple_trajectories=True,
+
     
 After executing multiple trajectories, change back to the original version:
     def differentiate(self, x, t=None, multiple_trajectories=False):
+        multiple_trajectories=False,
 """
 
 # Change this to your own directories, frame imports
@@ -26,10 +30,23 @@ After executing multiple trajectories, change back to the original version:
 # features_dir = r'brandao_generations' #Brandao et al. simulator, epsilon 0.3 gamma 0.2
 
 """ Features directory of the generated changemaps """
-features_dir_1 = r"../../generations/changemap_generations/cropped_cropped/result_24_cut_1_png"
-features_dir_2 = r"../../generations/changemap_generations/cropped_cropped/result_24_cut_2_png"
-features_dir_3 = r"../../generations/changemap_generations/cropped_cropped/result_24_cut_3_png"
-features_dir_4 = r"../../generations/changemap_generations/cropped_cropped/result_24_cut_4_png"
+#features_dir_1 = r"../../generations/changemap_generations/cropped_resized/result_20_cut_1_png"
+#features_dir_2 = r"../../generations/changemap_generations/cropped_resized/result_20_cut_2_png"
+#features_dir_3 = r"../../generations/changemap_generations/cropped_resized/result_20_cut_3_png"
+#features_dir_4 = r"../../generations/changemap_generations/cropped_resized/result_20_cut_4_png"
+
+""" Features directory of the generated changemaps """
+features_dir_1 = r"../../generations/deformation_generations/multi-trajectories/24_30_registered/cut_1/images"
+features_dir_2 = r"../../generations/deformation_generations/multi-trajectories/24_30_registered/cut_2/images"
+features_dir_3 = r"../../generations/deformation_generations/multi-trajectories/24_30_registered/cut_3/images"
+features_dir_4 = r"../../generations/deformation_generations/multi-trajectories/24_30_registered/cut_4/images"
+
+""" Features directory of the raw images """
+#features_dir_1 = r"../../data/multi_trajectories/cropped/22_30/cut_1"
+#features_dir_2 = r"../../data/multi_trajectories/cropped/22_30/cut_2"
+#features_dir_3 = r"../../data/multi_trajectories/cropped/22_30/cut_3"
+#features_dir_4 = r"../../data/multi_trajectories/cropped/22_30/cut_4"
+
 
 features_dirs = [features_dir_1, features_dir_2, features_dir_3, features_dir_4]
 
@@ -41,17 +58,17 @@ features_dirs = [features_dir_1, features_dir_2, features_dir_3, features_dir_4]
 res = 224
 
 """ Trajectory Length for Changemaps & Deformation """
-traj_len = 49
-# traj_len = 50
+#traj_len = 49
+traj_len = 50
 
 
 def get_features(features_dir):
     frames = []
     for filename in os.listdir(features_dir):
-        if filename.endswith(".png"):
-        # if filename.endswith(".jpg"):
-            img_1 = Image.open(os.path.join(features_dir, filename))
-            frames.append(img_1)
+        #if filename.endswith(".png"):
+        if filename.endswith(".jpg"):
+            img = Image.open(os.path.join(features_dir, filename))
+            frames.append(img)
 
     features = np.stack(frames, axis=0)
     # features = np.reshape(features, (470, res, res, 1)) # Artificially replicating pixel values as SINDy is a bit dumb
@@ -69,6 +86,7 @@ lib = ps.PDELibrary(
         lambda x: x ** 2,
         lambda x: x ** 3,
     ],
+
     function_names=[
         lambda x: x,
         lambda x: x + x,
@@ -77,6 +95,7 @@ lib = ps.PDELibrary(
     derivative_order=4,
     spatial_grid=spatial_grid,
     include_interaction=False,
+    multiindices=[[0,2], [2,0], [2,2], [0,4], [4,0]],
     differentiation_method=ps.SpectralDerivative,
 )
 
