@@ -6,9 +6,9 @@ Welcome to the MLDM Project repository. This project is part of the Master's pro
 
 ## Project Description
 
-The primary challenge addressed in this project is the identification of governing PDEs from unregistered electron microscopy images. These images exhibit patterns similar to those produced by the 2D Swift-Hohenberg equation. Our approach involves two main steps:
+The primary challenge addressed in this project is identifying governing PDEs from unregistered electron microscopy images. These images exhibit patterns similar to those produced by the 2D Swift-Hohenberg equation. Our approach involves two main steps:
 
-1. **Image Registration:** We apply various image registration methods to align the unregistered electron microscopy images. This is a crucial preprocessing step to ensure the accuracy of subsequent analyses.
+1. **Image Registration:** We apply various image registration methods to align the unregistered electron microscopy images. This is a crucial preprocessing step to ensure the accuracy of subsequent analyses. The proposed methods are: Change Maps, Deformation Fields and Optimal Transport with Phase Correlation approaches.
 2. **PDE Identification:** After registration, we use the SINDy algorithm and its variant, SINDyCP, to identify the governing PDEs from the processed images.
 
 ## Repository Contents
@@ -18,7 +18,8 @@ The primary challenge addressed in this project is the identification of governi
   - PDE identification using SINDy and SINDyCP.
   - Preprocessing and visualization utilities.
   - Analysis scripts.
-- `generations/` - Contains generated data from the original images as well as the results of the image registration process, and some product of Swift-Hohenberg solvers.
+- `generations/` - Contains generated data from the original images, the results of the image registration process, and some products of Swift-Hohenberg solvers.
+- `Results.md` - Field that contains all the discovered PDE's throughout the project. 
 - Additional support files and documentation.
 
 ### Prerequisites
