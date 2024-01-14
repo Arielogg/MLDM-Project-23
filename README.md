@@ -1,4 +1,4 @@
-# MLDM Project 2023
+# MLDM Project 2023 - Team 1
 
 ## Overview
 
