@@ -19,7 +19,7 @@ The primary challenge addressed in this project is identifying governing PDEs fr
   - Preprocessing and visualization utilities.
   - Analysis scripts.
 - `generations/` - Contains generated data from the original images, the results of the image registration process, and some products of Swift-Hohenberg solvers.
-- `Results.md` - File that contains all the discovered PDE's throughout the project. 
+- `results_pde/` - Contains all the discovered PDE's throughout the project. 
 - Additional support files and documentation.
 
 ### Prerequisites
