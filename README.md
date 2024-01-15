@@ -2,7 +2,7 @@
 
 ## Overview
 
-Welcome to the MLDM Project repository. This project is part of the Master's program in Machine Learning and Data Mining at Jean Monnet University. Our team is focused on exploring the utilization of the Sparse Identification of Nonlinear Dynamics (SINDy) algorithm to find partial differential equations (PDEs) from sets of unregistered microscopy images of surfaces exhibiting self-arranging patterns upon stimulation.
+Welcome to the Team 1 MLDM Project repository. This project is part of the Master's program in Machine Learning and Data Mining at Jean Monnet University. Our team is focused on exploring the utilization of the Sparse Identification of Nonlinear Dynamics (SINDy) algorithm to find partial differential equations (PDEs) from sets of unregistered microscopy images of surfaces exhibiting self-arranging patterns upon stimulation.
 
 ## Project Description
 
